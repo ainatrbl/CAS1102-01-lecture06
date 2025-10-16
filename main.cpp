@@ -10,10 +10,25 @@ int main() {
     //  1) Build an index map:
     //     Scan the first half of codeArray. Each position p contains a rank from 1 to n.
     //     At index i of pointerArray, store a pointer to the cell in ascending order of rank.
+    
+    // for rank 1-24 placement
+    for (int i = 0; i < n; i++) {
+        // for loop through codeArray
+        for (int j = 0; j < n; j++) {
+            if (codeArray[j] == i + 1) {
+                // storing pointer
+                pointerArray[i] = &codeArray[j];
+                break;
+            }
+        }
+    }
 
     //  2) Decode and print:
     //     Iterate index of pointerArray i from 0 to n-1.
     //     For each i, move forward by n elements to reach the paired ASCII code in the second half of codeArray.
     //     Convert that ASCII value to a character and print it.
-
+    for (int i = 0; i < n; i++) {
+        int asciiCode = *(pointerArray[i] + n); // move forward 24 elements
+        std::cout << static_cast<char>(asciiCode);
+    }
 }
